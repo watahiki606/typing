@@ -13,9 +13,10 @@ public class LoginController {
         return "login/login";
     }
 
+    // ログイン画面のPOST用
     @PostMapping("/login")
     public String postLogin(Model model) {
-        return "login/login";
+        return "redirect:/home";
     }
 
 }
