@@ -50,6 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/**").permitAll() // cssへアクセス許可
                 .antMatchers("/login").permitAll() // ログインページは直リンクOK
                 .antMatchers("/signup").permitAll() // ユーザー登録画面は直リンクOK
+                .antMatchers("/admin").hasAuthority("ROLE_ADMIN") // URLの認可
                 .anyRequest().authenticated(); // それ以外は直リンクNG
 
         // ログイン処理
@@ -58,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .failureUrl("/login") // ログイン失敗時の遷移先
                 .usernameParameter("userId") // ログインページのユーザーID
                 .passwordParameter("password") // ログインページのパスワード
-                .defaultSuccessUrl("/home", true); // ログイン成功後の遷移先l
+                .defaultSuccessUrl("/home", true); // ログイン成功後の遷移先
 
         // ログアウト処理(ログアウトすることでセッション破壊)
         http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutUrl("/logout")
