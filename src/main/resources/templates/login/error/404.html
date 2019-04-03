@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="http://www.thymeleaf.org"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>404Error</title>
+    </head>
+
+    <body>
+        <h1 th:text="${status}+''+${error}"></h1>
+        <p th:text="${message}"></p>
+        <p>404Error</p>
+        <form th:action="@{/logout} " method="post"></form>
+        <button class="btn btn-link" type="submit">ログイン画面に戻る</button>
+    </div>
+</body>
+</html>

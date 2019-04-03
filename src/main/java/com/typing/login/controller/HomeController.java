@@ -107,4 +107,12 @@ public class HomeController {
         return "redirect:/login";
     }
 
+    // アドミン権限専用画面のGET用
+    @GetMapping("/admin")
+    public String getAdmin(Model model) {
+        model.addAttribute("contents", "login/admin :: admin_contents");
+
+        return "login/homeLayout";
+    }
+
 }

@@ -6,12 +6,16 @@ import com.typing.login.domain.model.User;
 import com.typing.login.domain.repository.UserDao;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+@Transactional
 @Service
 public class UserService {
 
     @Autowired
+    @Qualifier("UserDaoJdbcImpl")
     UserDao dao;
 
     public boolean insert(User user) {
