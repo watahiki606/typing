@@ -9,7 +9,7 @@ import org.springframework.dao.DataAccessException;
 public interface UserDao {
     public int count() throws DataAccessException;
 
-    public int insertOne(User User) throws DataAccessException;
+    public int insertOne(User user) throws DataAccessException;
 
     public User selectOne(String userId) throws DataAccessException;
 
