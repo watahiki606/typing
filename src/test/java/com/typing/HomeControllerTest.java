@@ -24,12 +24,12 @@ public class HomeControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 
-	// モックの戻り値設定
+	// モックとして使用するbeanにはこのアノテーションをつける。
 	@MockBean
 	private UserService service;
 
 	@Test
-	@WithMockUser
+	@WithMockUser // ログイン後にしか表示できない画面のテストができるようになるアノテーション。
 	public void ユーザーリスト画面のユーザー件数のテスト() throws Exception {
 		// UserServiceのcountメソッドの戻り値を10に設定
 		when(service.count()).thenReturn(10);
