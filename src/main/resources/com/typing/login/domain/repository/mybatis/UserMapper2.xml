@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- クラス指定 このxmlファイルと対応するクラスを指定-->
+<mapper namespace="com.typing.login.domain.repository.mybatis.UserMapper2">
+
+    <!-- マッピング定義 
+    typeにマッピング定義をするパッケージ名とクラス名を指定する
+    idにはマッピング定義を使う場合の名前を設定する-->
+    <resultMap type="com.typing.login.domain.model.User" id="user">
+        <!-- idはDBのカラム名、propertyにはクラスのフィールド名を指定する -->
+        <id column="user_id" property="userId"/>
+        <result column="password" property="password"/>
+        <result column="user_name" property="userName"/>
+        <result column="role" property="role"/>
+    </resultMap>
+
+    <!-- idはメソッド名、parameterTypeはメソッドの引数を入れる。 -->
+    <insert id="insert" parameterType="com.typing.login.domain.model.User">
+    INSERT INTO m_user (
+        user_id,
+        password,
+        user_name,
+        role)
+    VALUES(
+        #{userId},
+        #{password},
+        #{userName},
+        #{role})
+    </insert>
+
+    <!-- resultMapはselect結果を何にマッピングするかという属性。下記のようにするとselect結果がUser型のフィールドに入れられる。 -->
+    <select id="selectOne" parameterType="string" resultMap="user">
+    SELECT
+        user_id,
+        password,
+        user_name,
+        role
+    FROM
+        m_user
+    WHERE
+        user_id = #{userId}
+    </select>
+
+    <select id="selectMany" resultMap="user">
+    SELECT
+        user_id,
+        password,
+        user_name,
+        role
+    FROM
+        m_user
+    </select>
+
+    <update id="updateOne" parameterType="com.typing.login.domain.model.User">
+    UPDATE m_user
+    SET
+        password = #{password},
+        user_name = #{userName}
+    WHERE
+        user_id = #{userId}
+    </update>
+
+    <delete id="deleteOne" parameterType="string">
+    DELETE FROM m_user WHERE user_id = #{userId}
+    </delete>
+</mapper>
